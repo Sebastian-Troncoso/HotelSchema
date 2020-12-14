@@ -33,7 +33,7 @@ create table Guest (
 
 create table RoomAmenity (
 	AmenityId int not null auto_increment,
-    RoomNumber int(4) not null,
+    RoomNumber int not null,
     
     primary key pk_RoomAmenity(AmenityId, RoomNumber),
     foreign key fk_RoomAmenity_Room(RoomNumber)
@@ -45,7 +45,7 @@ create table RoomAmenity (
 				
 create table Reservation(
 
-	ReservationId int(8) primary key not null auto_increment,
+	ReservationId int primary key not null auto_increment,
 	GuestId int not null,
     RoomNumber int not null,
     foreign key fk_Reservation_Room(RoomNumber)

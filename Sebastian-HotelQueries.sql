@@ -13,17 +13,17 @@ FROM Reservation
 		Reservation.GuestId = Guest.GuestId
 	RIGHT JOIN RoomAmenity ON
 		Reservation.RoomNumber = RoomAmenity.RoomNumber
-        LEFT JOIN Amenity ON
+	LEFT JOIN Amenity ON
 		RoomAmenity.AmenityId = Amenity.AmenityId
 WHERE Amenity.AmenityName = 'Jacuzzi';
         
 -- 3 Query that returns all the rooms reserved for a specific guest, including name, rooms reserved, reservation dates,  and number of people in reservation
 
-SELECT Guest.FirstName, Reservation.RoomNumber, Reservation.StartDate, Reservation.EndDate, Reservation.Adults, Reservation.Children
+SELECT Guest.FirstName, Guest.LastName, Reservation.RoomNumber, Reservation.StartDate, Reservation.EndDate, Reservation.Adults, Reservation.Children
 FROM Reservation
 	LEFT JOIN Guest ON
 		Reservation.GuestId = Guest.GuestId
-WHERE Guest.FirstName = 'Karie';
+WHERE Guest.FirstName = 'Karie' AND Guest.LastName = 'Yang';
 
 -- 4 Query return a list of rooms, reservations ID, cost of reservation. 
 
@@ -38,7 +38,7 @@ FROM Reservation
 			AND Room.MaximumOccupancy > 3
 WHERE Reservation.EndDate LIKE '2023-04-%' OR Reservation.StartDate LIKE '2023-04-%'
 GROUP BY Reservation.RoomNumber, Reservation.StartDate, Reservation.EndDate
-HAVING SUM(Reservation.Adults + Reservation.Children) > 3;
+HAVING SUM(Reservation.Adults + Reservation.Children) > 0;
 
 -- 6 Returns a list of all guest names and number of reservations per guest, sorted from morst reservations and then by guest last name
 SELECT Guest.FirstName, Guest.LastName, COUNT(Guest.FirstName) AS NumberOfReservations

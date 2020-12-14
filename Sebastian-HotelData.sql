@@ -116,7 +116,9 @@ insert into Guest(GuestId, FirstName, LastName, Address, City, State, Zip, Phone
     
     SET SQL_SAFE_UPDATES = 0;
     DELETE FROM Guest
-    WHERE Guest.FirstName = 'Jeremiah';
+    -- Better to use primary key instead of name
+   -- WHERE Guest.FirstName = 'Jeremiah';
+	WHERE Guest.GuestId = 8;
 	SET SQL_SAFE_UPDATES = 1;
     
 	SELECT * FROM Guest;
